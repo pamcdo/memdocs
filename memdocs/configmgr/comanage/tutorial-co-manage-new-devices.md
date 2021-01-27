@@ -375,6 +375,8 @@ Then, when a previously unmanaged Windows 10 device enrolls with Intune, it auto
 
 ### Create an Intune app to install the Configuration Manager client
 
+
+
 1. From the primary site server, sign in to the [Microsoft Endpoint Manager admin center](https://endpoint.microsoft.com) and go to the **Apps** > **All Apps** > **Add**.
 
 2. For app type, select **Line-of-business app** under **Other**.
@@ -401,6 +403,11 @@ For example, *C:\Program Files\Microsoft Configuration Manager\bin\i386\ccmsetup
 5. Select **OK > Add**.  The app is created and becomes available in the Intune console. After the app is available, you can use the following section to configure Intune to assign it to Windows 10 devices.
 
 ### Assign the Intune app to install the Configuration Manager client
+
+      > [!Note]  
+      > If you are using Autopilot, and are deploying the Configuration Manager Client to devices with a Hybrid Azure AD Join profile assigned, and are using [Azure AD Authentication for your CMG](../core/clients/manage/cmg/configure-authentication#azure-ad), you should not set the Configuration Manager Client as one of the applications that [blocks access to the device](../../intune/enrollment/windows-enrollment-status#block-access-to-a-device-until-a-specific-application-is-installed) installed during the Enrollment Status Page phase.
+      > The users may not become Hybrid Azure AD Joined in a timely fashion and will not be able to use Azure AD Authentication and time out the Enrollment Status Page. You should deploy the client to a user group instead of a device group in this scenario.
+      > -
 
 The following procedure deploys the app for installing the Configuration Manager client that you created in the previous procedure.
 
